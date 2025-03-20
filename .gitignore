@@ -1,0 +1,6 @@
+.env
+node_modules
+googleClientSetup.js
+credentials.json
+token.json
+.DS_Store
