@@ -166,7 +166,7 @@ const google = () => {
       return await createSheetsClient().spreadsheets.values.batchUpdate({
         spreadsheetId,
         requestBody: {
-          valueInputOption: "USER_ENTERED",
+          valueInputOption: "RAW",
           data, // array of ValueRanges
         },
       });
