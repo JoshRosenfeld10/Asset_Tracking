@@ -60,6 +60,7 @@ const formatInputData = async (rows) => {
     const city = row[googleSheetUI.indices.storeCity];
     const state = row[googleSheetUI.indices.storeState];
     const zip = row[googleSheetUI.indices.storeZip];
+    const gDriveFolderId = row[googleSheetUI.indices.gDriveFolderId];
     const combinedStoreAddress = `${addressLine}, ${city}, ${state}, ${zip}, US`;
 
     // 2A) Build the key for partsMap
@@ -95,6 +96,7 @@ const formatInputData = async (rows) => {
       Store_Number: storeNumber,
       Store_Name: storeName,
       Store_Address: combinedStoreAddress,
+      gDriveFolderId,
     };
   }
 
@@ -124,80 +126,12 @@ const formatInputData = async (rows) => {
       Store_Name: info.Store_Name,
       Store_Address: info.Store_Address,
       QR_Code_URI: await getQRCodeDataURI(uniqueId),
+      GDrive_Folder_ID: info.gDriveFolderId,
       Parts: partsArray,
     });
   }
 
-  // console.log(JSON.stringify(results, null, 2));
   return results;
 };
-
-const rows = [
-  [
-    "3",
-    1,
-    1,
-    "Test",
-    "UMPI375",
-    4056,
-    "Test",
-    "1535 Broadway",
-    "Ste 0161A",
-    "New York",
-    "NY",
-    10036,
-    "646.350.4645 RETAIL MGR",
-    "Fed Ex Ground",
-    241878686,
-    "UMPI375",
-    "Thu Jun 06 2024 00: 00: 00 GMT-0400 (Eastern Daylight Time)",
-    "Delivered",
-    "",
-  ],
-  [
-    "1",
-    1,
-    1,
-    "Test",
-    "UMPI375",
-    4056,
-    "Test",
-    "1535 Broadway",
-    "Ste 0161A",
-    "New York",
-    "NY",
-    10036,
-    "646.350.4645 RETAIL MGR",
-    "Fed Ex Ground",
-    241878686,
-    "UMPI375",
-    "Thu Jun 06 2024 00: 00: 00 GMT-0400 (Eastern Daylight Time)",
-    "Delivered",
-    "",
-  ],
-  [
-    "1",
-    2,
-    1,
-    "Test",
-    "UMPI375",
-    4056,
-    "Test",
-    "1535 Broadway",
-    "Ste 0161A",
-    "New York",
-    "NY",
-    10036,
-    "646.350.4645 RETAIL MGR",
-    "Fed Ex Ground",
-    241878686,
-    "UMPI375",
-    "Thu Jun 06 2024 00: 00: 00 GMT-0400 (Eastern Daylight Time)",
-    "Delivered",
-    "",
-  ],
-];
-
-formatInputData(rows);
 
 module.exports = formatInputData;

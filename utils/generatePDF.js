@@ -15,15 +15,15 @@ const generatePDF = async ({ body, rowNumbers }) => {
           status: "pending",
           payload: body,
           meta: {
-            _filename: body["fileName"],
-            gDriveFolderId: body["gdriveFolderId"],
-            rowNumbers,
+            _filename: body["Unique_ID"],
+            gDriveFolderId: body["GDrive_Folder_ID"],
+            rowNumbers: rowNumbers.toString(),
           },
         },
       }),
     });
 
-    console.log(`QC Inspection Report PDF generated successfully.`);
+    console.log(`Asset Tracking Report PDF generated successfully.`);
   } catch (error) {
     console.error(error);
   }
