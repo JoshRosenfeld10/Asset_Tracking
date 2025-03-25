@@ -4,7 +4,7 @@ const express = require("express"),
   sheets = require("./routes/sheets"),
   generatePDFs = require("./routes/generatePDFs"),
   upload = require("./routes/upload"),
-  port = 3000 || config.port;
+  port = config.port || 3000;
 
 const app = express();
 
