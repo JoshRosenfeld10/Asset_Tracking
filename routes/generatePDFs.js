@@ -17,8 +17,10 @@ router.post("/", async (req, res) => {
       // Compute the rows numbers that the PDF should be stored on
       const rowNumbers = data.reduce((acc, row, i) => {
         if (
-          row[googleSheetUI.indices.orderId] === obj.Unique_ID &&
-          row[googleSheetUI.indices.trackingNumber] === obj.Tracking_Number
+          row[googleSheetUI.indices.orderId].toString().toUpperCase() ===
+            obj.Unique_ID.toString().toUpperCase() &&
+          row[googleSheetUI.indices.trackingNumber].toString().toUpperCase() ===
+            obj.Tracking_Number.toString().toUpperCase()
         ) {
           acc.push(startRow + i);
         }
