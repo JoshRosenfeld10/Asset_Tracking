@@ -5,11 +5,9 @@ const express = require("express"),
   generatePDFs = require("./routes/generatePDFs"),
   upload = require("./routes/upload"),
   recreatePDF = require("./routes/recreatePDF"),
-  bodyParser = require("body-parser"),
   port = config.port || 3000;
 
 const app = express();
-app.use(bodyParser.raw({ type: "application/gzip", limit: "10mb" }));
 
 if (constants.local) app.use("/sheets", sheets);
 
