@@ -2,13 +2,16 @@ const express = require("express"),
   router = express.Router(),
   formatInputData = require("../utils/formatInputData"),
   googleSheetUI = require("../constants/googleSheetUI"),
+  bodyParser = require("body-parser"),
+  zlib = require("zlib"),
   generatePDF = require("../utils/generatePDF");
 
-router.use(express.json());
+app.use(bodyParser.raw({ type: "application/gzip", limit: "10mb" }));
 
 router.post("/", async (req, res) => {
   try {
-    const { data, startRow } = req.body;
+    const decompressed = zlib.gunzipSync(req.body);
+    const { data, startRow } = JSON.parse(decompressed.toString());
 
     // Format input data
     const formattedData = await formatInputData(data);
