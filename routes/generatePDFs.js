@@ -2,11 +2,8 @@ const express = require("express"),
   router = express.Router(),
   formatInputData = require("../utils/formatInputData"),
   googleSheetUI = require("../constants/googleSheetUI"),
-  bodyParser = require("body-parser"),
   zlib = require("zlib"),
   generatePDF = require("../utils/generatePDF");
-
-router.use(bodyParser.raw({ type: "application/gzip", limit: "10mb" }));
 
 router.post("/", async (req, res) => {
   try {
