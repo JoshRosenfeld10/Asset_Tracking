@@ -6,7 +6,7 @@ const express = require("express"),
   zlib = require("zlib"),
   generatePDF = require("../utils/generatePDF");
 
-app.use(bodyParser.raw({ type: "application/gzip", limit: "10mb" }));
+router.use(bodyParser.raw({ type: "application/gzip", limit: "10mb" }));
 
 router.post("/", async (req, res) => {
   try {
